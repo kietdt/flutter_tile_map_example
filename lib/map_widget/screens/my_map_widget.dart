@@ -138,7 +138,7 @@ class _MyMapWidgetState extends State<MyMapWidget> with MyGoogleMapMixin {
   Widget _buildMapBox() {
     return TileLayer(
       urlTemplate:
-          'https://api.mapbox.com/styles/v1/reamapbox/{mapStyleId}/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}',
+          'https://api.mapbox.com/styles/v1/kihaso111/{mapStyleId}/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}',
       minZoom: AppConstants.minZoom,
       maxZoom: AppConstants.maxZoom,
       additionalOptions: {
