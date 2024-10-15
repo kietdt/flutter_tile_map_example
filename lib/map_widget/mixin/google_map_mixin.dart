@@ -116,7 +116,7 @@ mixin MyGoogleMapMixin {
       log(e.toString());
     }
     
-    var data = responseData;
+    var data = responseData ?? <String, dynamic>{};
 
     return BResponse(
       data,
