@@ -24,7 +24,7 @@ class ApiHelper {
   }) async {
     return http
         .post(
-      Uri.parse("$customBaseApi").resolveUri(Uri(
+      Uri.parse("$customBaseApi/$path").resolveUri(Uri(
         queryParameters: params,
       )),
       headers: headers,

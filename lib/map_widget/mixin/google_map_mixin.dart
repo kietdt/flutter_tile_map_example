@@ -19,7 +19,9 @@ class DATA_CONST {
 }
 
 class AppConstants {
-  static String googleMapAPIKey = ""; // insert your Google map Tile key here
+  static String googleMapAPIKey = ""; // insert a valid Google map Tile key here
+  static String mapBoxStyleId = "";
+  static String mapBoxAccessToken = "";
   static double minZoom = 13;
   static double maxZoom = 22;
 }
@@ -94,7 +96,7 @@ mixin MyGoogleMapMixin {
 
     http.Response res = await ApiHelper.post(
       path: 'v1/createSession?key={key}',
-      customBaseApi: "https://tile.googleapis.com/",
+      customBaseApi: "https://tile.googleapis.com",
       params: {
         "key": apiKey,
       },
