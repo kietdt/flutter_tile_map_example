@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 enum MapTypeEnum {
   google,
-  mapBox;
+  mapBox,
+  both;
 
   static List<MapTypeEnum> available = values;
 }

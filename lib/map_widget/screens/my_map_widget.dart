@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/map_widget/mixin/google_map_mixin.dart';
@@ -49,8 +51,15 @@ class _MyMapWidgetState extends State<MyMapWidget> with MyGoogleMapMixin {
       floatingActionButton: InkWell(
         onTap: () {
           int index = MapTypeEnum.available.indexOf(currentMapType);
+          int indexNext = index + 1;
 
-          var mapTypeToChange = MapTypeEnum.available.elementAt(1 - index);
+          if (indexNext >= MapTypeEnum.available.length) {
+            indexNext = 0;
+          }
+
+          var mapTypeToChange = MapTypeEnum.available.elementAt(indexNext);
+
+          log("Change type to: $mapTypeToChange");
 
           myMapTypeNotifier.onMapTypeChanged(mapTypeToChange);
         },
@@ -91,7 +100,7 @@ class _MyMapWidgetState extends State<MyMapWidget> with MyGoogleMapMixin {
         initialZoom: 13.0,
       ),
       children: [
-        _getMap(mapType),
+        ..._getMap(mapType),
 
         // marker
         DragMarkers(
@@ -126,12 +135,23 @@ class _MyMapWidgetState extends State<MyMapWidget> with MyGoogleMapMixin {
     );
   }
 
-  Widget _getMap(MapTypeEnum mapType) {
+  List<Widget> _getMap(MapTypeEnum mapType) {
     switch (mapType) {
       case MapTypeEnum.google:
-        return _buildGoogleMap();
+        return [_buildGoogleMap()];
       case MapTypeEnum.mapBox:
-        return _buildMapBox();
+        return [_buildMapBox()];
+      case MapTypeEnum.both:
+        return [
+          Opacity(
+            opacity: 1,
+            child: _buildMapBox(),
+          ),
+          Opacity(
+            opacity: .5,
+            child: _buildGoogleMap(),
+          )
+        ];
     }
   }
 
