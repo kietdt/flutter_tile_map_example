@@ -19,10 +19,12 @@ class DATA_CONST {
 }
 
 class AppConstants {
-  static String googleMapAPIKey = "";
+  static String googleMapAPIKey = ""; // insert your Google map Tile key here
+  static double minZoom = 13;
+  static double maxZoom = 22;
 }
 
-class MyGoogleMapMixin {
+mixin MyGoogleMapMixin {
   Future<String?> getGoogleMapTileUrl() async {
     String? token = await getGoogleTileApiToken();
     if (token != null) {
@@ -106,7 +108,14 @@ class MyGoogleMapMixin {
         'Accept': 'application/json',
       },
     );
-    final responseData = jsonDecode(res.body) as Map<String, dynamic>;
+    dynamic responseData;
+
+    try {
+      responseData = jsonDecode(res.body) as Map<String, dynamic>;
+    } catch (e) {
+      log(e.toString());
+    }
+    
     var data = responseData;
 
     return BResponse(

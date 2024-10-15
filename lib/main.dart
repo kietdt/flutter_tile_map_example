@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/map_widget/screens/my_map_widget.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  GetIt.instance.registerSingleton(await SharedPreferences.getInstance());
+
   runApp(const MyApp());
 }
 
