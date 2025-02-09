@@ -63,20 +63,25 @@ class _MyMapWidgetState extends State<MyMapWidget> with MyGoogleMapMixin {
 
           myMapTypeNotifier.onMapTypeChanged(mapTypeToChange);
         },
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.change_circle,
               size: 100,
               color: Colors.blue,
             ),
-            Text(
-              "change map tile url",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+            ListenableBuilder(
+              listenable: myMapTypeNotifier,
+              builder: (context, child) {
+                return Text(
+                  "Current layer: ${myMapTypeNotifier.mapType.name}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                );
+              }
             )
           ],
         ),
