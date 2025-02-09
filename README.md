@@ -11,7 +11,7 @@ Introduction to Tile Map API and Example Using Google Tile Map API with flutter_
 
 
 # Record video
-<video src="assets/record_video/Screen Recording 2025-02-09 at 5.56.11 pm.mov" width =“300”/>
+<video src="https://github.com/user-attachments/assets/a246fc6d-afa4-4b9a-ba8f-ef43706319fa" width =“300”/>
 
 
 
